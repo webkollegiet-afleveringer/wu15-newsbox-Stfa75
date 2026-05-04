@@ -9,11 +9,16 @@ img {
     height: auto;
 }
 
-.find {
+.Searchbox {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#find {
     width: 345px;
     height: 46px;
     background-color: rgba(217, 217, 217, 0.3);
     border: 2px solid black;
     margin: 0 auto;
-
 }

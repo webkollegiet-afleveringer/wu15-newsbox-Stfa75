@@ -6,8 +6,10 @@ export default function Search() {
 
     return (
         <>
+            <div className="Searchbox">
+                <input type="search" id="find" placeholder="Search news" />
+            </div>
 
-            <input type="search" className="find" placeholder="Search news" />
         </>
     )
 
