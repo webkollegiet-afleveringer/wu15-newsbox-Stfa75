@@ -8,7 +8,7 @@ import Footer from "../Components/Footer"
 
 
 
-export default function Archive() {
+export default function Popular() {
 
     return (
         <>
@@ -25,5 +25,4 @@ export default function Archive() {
 
         </>
     )
-
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { TRUE } from "sass";
 
-export default function useFetchData(url, key) {
+export default function useFetchData(key, url) {
 
     const [data, setData] = useState(null)
     const [pending, setPending] = useState(true)
@@ -20,9 +20,8 @@ export default function useFetchData(url, key) {
                     throw new Error(`Error ${respons.status}`)
                 }
                 const json = await respons.json()
-                setPending(false)
                 setData(json)
-                setError(null)
+
             }
             catch (error) {
                 setPending(false)
@@ -30,6 +29,7 @@ export default function useFetchData(url, key) {
             }
 
         }
+
         fetchData()
 
     }, [url])

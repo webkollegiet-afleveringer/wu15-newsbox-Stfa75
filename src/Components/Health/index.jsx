@@ -42,13 +42,14 @@ export default function Health() {
                     {data.results.slice(0, 20).map((article, index) => (
                         <a href={article.url} target="_blank" rel="noopener noreferrer">
 
-                        <div key={index} className="ArticleItem">
-                            <img src={getImg(article)} alt={article.title} className="ArticleImage"/>
-                            <div className="text">
-                                <h4>{article.title}</h4>
-                                <p>{limitWords(article.abstract)}</p>
-                            </div>
-                            </div></a>                   
+                            <div key={index} className="ArticleItem">
+                                <img src={getImg(article)} alt={article.title} className="ArticleImage" />
+                                <div className="text">
+                                    <h4>{article.title}</h4>
+                                    <p>{limitWords(article.abstract)}</p>
+                                </div>
+
+                            </div></a>
                     ))}
                 </section>
             )}

@@ -8,13 +8,13 @@ import Footer from "../Components/Footer"
 
 
 
-export default function Archive() {
+export default function Popular() {
 
     return (
         <>
 
             <Header />
-            <h3>Archive</h3>
+            <h3>Settings</h3>
             <Health />
             <Business />
             <Sports />
@@ -25,5 +25,4 @@ export default function Archive() {
 
         </>
     )
-
 }
