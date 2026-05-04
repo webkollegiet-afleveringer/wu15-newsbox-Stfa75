@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+
+
+.BusinessSection {
+    max-width: 400px;
+    height: 70px;
+    border: 1px solid rgb(211, 206, 206);
+    display: flex;
+    align-items: center;
+
+
+
+
+}
+
+.Overskrift {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 20px;
+    gap: 15px;
+}
+
+.Overskrift img {
+    width: 20px;
+    height: 30px;
+    gap: 10px;
+}
+
+.Pil img {
+    width: 24px;
+    height: 24px;
+    justify-self: flex-end;
+    margin-right: 20px;
+}
+
+.Pil img.roteret {
+    transform: rotate(180deg);
+    /* Vender pilen på hovedet */
+}
+
+.ArticleList {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+
+
+}
+
+.ArticleItem {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid black;
+    padding: 0.8rem;
+}
+
+.ArticleItem img {
+    width: 72px;
+    height: 72px;
+    border-radius: 10px;
+
+}
+
+.text {
+    text-align: start;
+
+}

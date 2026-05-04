@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.find {
+    width: 345px;
+    height: 46px;
+    background-color: rgba(217, 217, 217, 0.3);
+    border: 2px solid black;
+    margin: 0 auto;
+
+}

@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.footer {
+    width: 400px;
+    height: 90px;
+}
+
+.All {
+    width: 400px;
+    height: 90px;
+    border: 1px solid black;
+    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.05),
+        0 -3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.Footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+
+}
+
+.image {
+    width: 25px;
+    height: 25px;
+}

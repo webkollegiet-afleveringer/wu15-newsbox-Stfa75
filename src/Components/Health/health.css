@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+.HealthSection{
+    max-width: 400px;
+    height: 70px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+
+    
+   
+}
+.Overskrift{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; 
+    margin-left: 20px;
+    gap: 15px;  
+}
+.Overskrift img{
+    width: 20px;
+    height: 30px; 
+    gap: 10px;
+}
+.Pil img{
+    width: 24px;
+    height: 24px;
+    justify-self: flex-end;
+    margin-right: 20px;
+}
+.Pil img.roteret {
+    transform: rotate(180deg); /* Vender pilen på hovedet */
+}
