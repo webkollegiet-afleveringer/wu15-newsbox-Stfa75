@@ -5,6 +5,7 @@ import Footer from "../Components/Footer"
 import Sports from "../Components/Sports"
 import Business from "../Components/Business"
 import Travel from "../Components/Travel"
+import GrIcon from "../Components/GreenIcon"
 
 
 
@@ -19,6 +20,7 @@ export default function Home() {
             <Sports />
             <Travel />
             <Footer />
+            <GrIcon />
 
 
 

@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.Green {
+    width: 104px;
+    height: 104px;
+}
+
+.bookmark {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    z-index: 2;
+    left: 63px;
+    bottom: 35px;
+}

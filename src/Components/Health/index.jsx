@@ -5,6 +5,7 @@ import Logo from "../../img/logo.png"
 import "./health.scss"
 
 
+
 export default function Health() {
     const apiKey = "wtLUgKBONr2XcZEobnbpK5fhDFcH5GshjykRqAsuOtFW9rSq"
     const { data, pending, error } = useFetchData(`https://api.nytimes.com/svc/news/v3/content/all/health.json?api-key=${apiKey}`)
@@ -42,14 +43,14 @@ export default function Health() {
                     {data.results.slice(0, 20).map((article, index) => (
                         <a href={article.url} target="_blank" rel="noopener noreferrer">
 
-                            <div key={index} className="ArticleItem">
-                                <img src={getImg(article)} alt={article.title} className="ArticleImage" />
-                                <div className="text">
-                                    <h4>{article.title}</h4>
-                                    <p>{limitWords(article.abstract)}</p>
-                                </div>
-
-                            </div></a>
+                        <div key={index} className="ArticleItem">
+                            <img src={getImg(article)} alt={article.title} className="ArticleImage"/>
+                            <div className="text">
+                                <h4>{article.title}</h4>
+                                <p>{limitWords(article.abstract)}</p>
+                            </div>
+                            
+                            </div></a>                   
                     ))}
                 </section>
             )}
