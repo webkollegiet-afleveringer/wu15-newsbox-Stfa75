@@ -1,4 +1,5 @@
 import useFetchData from "../../Hooks/useFetchData"
+import fetchCachedData from "../../Hooks/Fetch-Cached-Data"
 import { useState } from "react";
 import Down from "../../img/featherdown.png"
 import Logo from "../../img/logo.png"
@@ -26,7 +27,7 @@ export default function Health() {
     }
 
 
-        return (
+    return (
         <>  <article className="SportsSection">
             <section className="Overskrift">
                 <img src={Logo} alt="a logo" />
@@ -41,14 +42,14 @@ export default function Health() {
                 <section className="ArticleList">
                     {data.results.slice(0, 20).map((article, index) => (
                         <a href={article.url} target="_blank" rel="noopener noreferrer">
-                        <div key={index} className="ArticleItem">
-                            <img src={getImg(article)} alt={article.title} className="ArticleImage"/>
-                        
-                            <div className="text">
-                                <h4>{article.title}</h4>
-                                <p>{limitWords(article.abstract)}</p>
-                            </div>
-                        </div></a>                   
+                            <div key={index} className="ArticleItem">
+                                <img src={getImg(article)} alt={article.title} className="ArticleImage" />
+
+                                <div className="text">
+                                    <h4>{article.title}</h4>
+                                    <p>{limitWords(article.abstract)}</p>
+                                </div>
+                            </div></a>
                     ))}
                 </section>
             )}

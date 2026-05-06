@@ -4,6 +4,8 @@ import Archive from './Views/archive'
 import Popular from './Views/popular'
 import Settings from './Views/settings'
 
+
+
 export default function App() {
 
   return (
@@ -19,6 +21,7 @@ export default function App() {
         {/* </Route> */}
       </Routes>
     </BrowserRouter>
+
 
   )
 }

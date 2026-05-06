@@ -9,16 +9,35 @@ img {
     height: auto;
 }
 
-.Green {
+/* Beholderen omkring de to billeder */
+.icon-wrapper {
+    position: relative;
+    /* Gør dette til 'ankeret' for de absolutte elementer */
     width: 104px;
     height: 104px;
+    display: flex;
+    /* Hjælper med at centrere indholdet */
+    align-items: center;
+    justify-content: center;
+}
+
+.Green {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    /* Lægges i bunden */
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
 .bookmark {
-    width: 24px;
-    height: 24px;
-    position: relative;
+    width: 15px !important;
+    height: 15px !important;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    /* Lægges ovenpå */
     z-index: 2;
-    left: 63px;
-    bottom: 35px;
+
 }

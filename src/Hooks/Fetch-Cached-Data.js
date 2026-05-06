@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { TRUE } from "sass";
 
-export default function useFetchData(key, url) {
+export default function useFetchCachedData(key, url) {
 
     const [data, setData] = useState(null)
     const [pending, setPending] = useState(true)
     const [error, setError] = useState(null)
-    let result = null;
+
 
     useEffect(() => {
         async function fetchData() {
@@ -19,10 +19,18 @@ export default function useFetchData(key, url) {
                     setData(null)
                     throw new Error(`Error ${respons.status}`)
                 }
-                const json = await respons.json()
-                setData(json)
+                let result = null;
+
+                result = await respons.json()
+                setData(result)
+                if (key) {
+                    sessionStorage.setItem(key, JSON.stringify(result))
+                    sessionStorage.setItem(key + "_expires", Date.now() + 1000 * 60 * 10)
+                }
 
             }
+
+
             catch (error) {
                 setPending(false)
                 setError(error.message)

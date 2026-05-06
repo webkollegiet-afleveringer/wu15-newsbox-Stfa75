@@ -3,7 +3,7 @@ import Sports from "../Components/Sports"
 import Business from "../Components/Business"
 import Travel from "../Components/Travel"
 import Health from "../Components/Health"
-import Footer from "../Components/Footer"
+import Navbar from "../Components/Navbar"
 
 
 
@@ -19,7 +19,7 @@ export default function Popular() {
             <Business />
             <Sports />
             <Travel />
-            <Footer />
+            <Navbar />
 
 
 
