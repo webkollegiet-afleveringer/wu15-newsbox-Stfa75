@@ -1,36 +1,31 @@
 import Searchbar from "../Components/Searchbar"
 import Health from "../Components/Health"
-import Header from "../Components/Header"
-import Navbar from "../Components/Navbar"
 import Sports from "../Components/Sports"
 import Business from "../Components/Business"
 import Travel from "../Components/Travel"
-import GrIcon from "../Components/GreenIcon"
-import Settings from "../Components/Settings"
 import Europe from "../Components/Europe"
 
-
-
-
 export default function Home() {
-
+    // Vi henter indstillingerne. 
+    // Vi tjekker om de IKKE er "false", så de er "true" som standard.
+    const showEurope = localStorage.getItem("europe") !== "false";
+    const showHealth = localStorage.getItem("health") !== "false";
+    const showSports = localStorage.getItem("sports") !== "false";
+    const showBusiness = localStorage.getItem("business") !== "false";
+    const showTravel = localStorage.getItem("travel") !== "false";
+    
     return (
         <>
-            <Header />
+           
             <Searchbar />
-            <Europe />
-            <Health />
-            <Sports />
-            <Business />
-            <Travel />
-            <Navbar />
-            <Settings />
 
-
-
-
-
+            {/* Her styres om de vises eller ej */}
+            {showEurope && <Europe />}
+            {showHealth && <Health />}
+            {showSports && <Sports />}
+            {showBusiness && <Business />}
+            {showTravel && <Travel />}
+          
         </>
     )
-
 }

@@ -23,7 +23,7 @@ export default function Health() {
         if (!text) return "";
         const words = text.split(" ");
         if (words.length <= 4) return text;
-        return words.slice(0, 10).join(" ") + "...";
+        return words.slice(0, 5).join(" ") + "...";
     }
 
 

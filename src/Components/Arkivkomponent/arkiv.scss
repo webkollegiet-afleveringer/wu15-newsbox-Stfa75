@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+.ArticleItem {
+    width: 400px;
+    height: 104px;
+    border: 1px solid black;
+    display: flex;
+    margin: 20px auto;
+    overflow: hidden; /* Vigtigt: Klipper alt af, der stikker ud */
+}
+
+.Text {
+    flex: 0 0 70%; /* Fylder præcis 70% */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: start;
+}
+
+// .Icon-Container {
+//     flex: 0 0 30%; /* Her er din 30% bredde */
+//     height: 100%;
+//     position: relative; /* Dette er 'ankeret' for Green og Bookmark */
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+   
+// }
+
+.Green {
+    width:104px!important;
+    height: 104px !important;
+    position: relative;
+    top: -15px;
+    left: 12px;
+    width: 100%; /* Fylder 100% af de 30% bredde */
+    height: 100%;
+    border-radius: 0 !important;
+    z-index: 1;
+    object-fit: cover;
+}
+
+.Bookmark {
+    width: 50px !important; /* Vi holder selve ikonet lille */
+    height: 50px!important;
+    position: fixed !important; /* Ligger sig pænt i midten pga. flex i IconContainer */
+    z-index: 10 !important;
+    top: 20px;
+    color: black;
+    background-color: black;
+}

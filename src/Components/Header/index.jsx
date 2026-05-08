@@ -8,7 +8,7 @@ export default function Header() {
     return (
         <>
             <section className="Header">
-                <img src={Logo} alt="arrow down" />
+                <img src={Logo} alt="Logo" />
                 <h3>Newsify</h3>
             </section>
         </>
