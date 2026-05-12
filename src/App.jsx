@@ -35,9 +35,9 @@ export default function App() {
           <Route path="archive" element={<Archive />} />
           <Route path="popular" element={<Popular />} />
           {/* 4. HER sender vi props ned til Settings */}
-          <Route
-            path="settings"
-            element={<Settings isDark={isDark} onToggle={toggleTheme} />}
+          <Route 
+            path="settings" 
+            element={<Settings isDark={isDark} onToggle={toggleTheme} />} 
           />
         </Route>
       </Routes>
