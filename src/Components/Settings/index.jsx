@@ -3,18 +3,18 @@ import "./settings.scss"
 import Logo from "../../img/logo.png"
 
 export default function Settings({ isDark, onToggle }) {
-console.log(onToggle);
+    console.log(onToggle);
 
     function inputHandler(event) {
         localStorage.setItem(event.target.dataset.category, event.target.checked)
-        
-        
+
+
     }
 
     return (
         <>
             <h3 className="Subheading">Categories</h3>
-            
+
             {/* EUROPE */}
             <article className="Options">
                 <div className="Name">
@@ -23,8 +23,8 @@ console.log(onToggle);
                 </div>
                 <div>
                     <label className="switch">
-                        <input type="checkbox" data-category="europe" onInput={inputHandler} defaultChecked={localStorage.getItem("europe") === "true"} />
-                        <span className="className round"></span>
+                        <input type="checkbox" data-category="Europe" onInput={inputHandler} defaultChecked={localStorage.getItem("health") === "true"} />
+                        <span className="slider round"></span>
                     </label>
                 </div>
             </article>
@@ -89,9 +89,9 @@ console.log(onToggle);
             {/* DARK MODE KNAP - Nu med onClick! */}
             <div className="Swich">
                 <button className="Light" onClick={onToggle}>
-                    <h3>{isDark ? "SWITCH TO LIGHT" : "SWITCH TO DARK"}</h3> 
+                    <h3>{isDark ? "SWITCH TO LIGHT" : "SWITCH TO DARK"}</h3>
                 </button>
-               
+
             </div>
         </>
     )
