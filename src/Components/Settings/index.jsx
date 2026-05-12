@@ -3,6 +3,7 @@ import "./settings.scss"
 import Header from "../Header"
 import Navbar from "../Navbar"
 
+
 export default function Settings() {
 
     function inputHandler(event) {
@@ -12,7 +13,7 @@ export default function Settings() {
     return (
 
         <>
-          
+
             <article className="Options">
                 <h2>EUROPE</h2>
                 <div>
@@ -26,7 +27,7 @@ export default function Settings() {
                 <h2>HEALTH</h2>
                 <div>
                     <label class="switch">
-                        <input type="checkbox" data-category="health" id="Toggle" onInput={inputHandler} defaultChecked={localStorage.getItem("europe") === "true"}/>
+                        <input type="checkbox" data-category="health" id="Toggle" onInput={inputHandler} defaultChecked={localStorage.getItem("europe") === "true"} />
                         <span class="slider round"></span>
                     </label>
                 </div>
@@ -35,7 +36,7 @@ export default function Settings() {
                 <h2>SPORT</h2>
                 <div>
                     <label class="switch">
-                        <input type="checkbox" data-category="sports" id="Toggle" onInput={inputHandler} defaultChecked={localStorage.getItem("europe") === "true"}/>
+                        <input type="checkbox" data-category="sports" id="Toggle" onInput={inputHandler} defaultChecked={localStorage.getItem("europe") === "true"} />
                         <span class="slider round"></span>
                     </label>
                 </div>
@@ -44,7 +45,7 @@ export default function Settings() {
                 <h2>BUSINESS</h2>
                 <div>
                     <label class="switch">
-                        <input type="checkbox" data-category="business" id="Toggle" onInput={inputHandler} defaultChecked={localStorage.getItem("europe") === "true"}/>
+                        <input type="checkbox" data-category="business" id="Toggle" onInput={inputHandler} defaultChecked={localStorage.getItem("europe") === "true"} />
                         <span class="slider round"></span>
                     </label>
                 </div>

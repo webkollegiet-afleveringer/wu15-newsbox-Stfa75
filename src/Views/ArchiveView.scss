@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+
+.ArchivePage {
+    padding: 20px;
+    
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        font-weight: 900;
+    }
+}
+
+.ArchiveContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Afstand mellem kasserne */
+}
+
+.ArchiveCategoryGroup {
+    width: 100%;
+    overflow: hidden;
+
+    /* SELVE KASSEN (Knappen man trykker på) */
+    .CategoryHeader {
+        width: 400px;
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid black;
+        
+        background-color: #f8f8f8; /* Lys grå som i Home */
+        border: none;
+       
+        
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+        span {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-transform: capitalize;
+            /* Sikrer at teksten ikke klippes */
+            line-height: 1.2;
+            display: block;
+        }
+
+        svg {
+            font-size: 1.5rem;
+            color: #333;
+            transition: transform 0.2s ease;
+        }
+
+        &:active {
+            background-color: #efefef;
+            transform: scale(0.98); /* Lille klik-effekt */
+        }
+    }
+}
+
+/* LISTEN DER FOLDER SIG UD */
+.CategoryList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;   
+    /* En lille animation så den ikke bare "popper" frem */
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hvis du vil have en tom-besked styling */
+.empty-msg {
+    text-align: center;
+    color: #888;
+    margin-top: 50px;
+    font-style: italic;
+}

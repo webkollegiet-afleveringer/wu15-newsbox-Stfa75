@@ -1,0 +1,87 @@
+
+// 1. Den nye wrapper der holder styr på isolationen
+.ArchiveWrapper {
+    position: relative;
+    overflow: hidden;    // Dette sikrer, at du kun ser ét ikon ad gangen
+    background-color: hotpink; // Den grønne farve der afsløres bagved
+    width: 100%;
+}
+
+.ArchiveItem {
+    display: flex;
+    gap: 15px;
+    padding: 1em;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    background-color: white; // Skal være hvid for at dække ikonet
+    position: relative; 
+    z-index: 2;          // Ligger øverst (over ikonet)
+    width: 100%;         // Sikrer at den fylder hele bredden
+    
+    // Fjernet overflow: hidden herfra, da den nu sidder på Wrapperen
+}
+
+.text {
+    flex: 1; 
+    min-width: 0; 
+    flex-shrink: 0;
+}
+
+.Archive_heading { // Rettet fra Article_heading
+    margin: 0 0 5px 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+
+.Archive_abstract { // Rettet fra Article_abstract
+    margin: 0;
+    font-size: 0.9em;
+    color: #666;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4; 
+    max-height: 2.8em; 
+}
+
+// 2. Rettet container til ikonet
+.red-action-layer {
+    position: absolute;
+    top: 0;
+    right: 0;      // Placeres i højre side af Wrapperen
+    bottom: 0;
+    width: 80px;   // Bredden på det synlige område når der swipes
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;    // Ligger bagved ArticleItem
+}
+
+// 3. Rettet selve billedet (Ikonet)
+.red-action-layer img {
+    /* Fjernet dine gamle absolute værdier og left: 400px */
+    width: 30px !important; 
+    height: 30px !important;
+    object-fit: contain;
+    
+}
+.ArchiveImage { // Sørg for at dette navn matcher det, du skriver i JSX
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.ArchiveLink { // Husk også denne, så dit layout ikke går i stykker
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}

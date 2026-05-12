@@ -13,6 +13,28 @@ export default function Home() {
     const showSports = localStorage.getItem("sports") !== "false";
     const showBusiness = localStorage.getItem("business") !== "false";
     const showTravel = localStorage.getItem("travel") !== "false";
+
+    const handleSaveToArchive = (article) => {
+        console.log(handleSaveToArchive);
+        
+    // 1. Hent hvad der allerede ligger i arkivet (eller lav et tomt array hvis det er første gang)
+    const currentArchive = JSON.parse(localStorage.getItem("myArchive")) || [];
+
+    // 2. Tjek om vi har gemt den før (vi sammenligner URL'er, da de er unikke)
+    const alreadyExists = currentArchive.some(item => item.url === article.url);
+
+    if (!alreadyExists) {
+        // 3. Tilføj den nye artikel til listen
+        const updatedArchive = [...currentArchive, article];
+
+        // 4. Gem den opdaterede liste som en tekst-streng
+        localStorage.setItem("myArchive", JSON.stringify(updatedArchive));
+        
+        alert("Artiklen er nu gemt i dit arkiv!");
+    } else {
+        alert("Denne artikel ligger allerede i arkivet.");
+    }
+};
     
     return (
         <>

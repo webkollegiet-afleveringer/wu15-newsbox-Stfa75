@@ -8,36 +8,7 @@ img {
     width: 100%;
     height: auto;
 }
-
-/* Beholderen omkring de to billeder */
-.icon-wrapper {
-    position: relative;
-    /* Gør dette til 'ankeret' for de absolutte elementer */
-    width: 104px;
-    height: 104px;
-    display: flex;
-    /* Hjælper med at centrere indholdet */
-    align-items: center;
-    justify-content: center;
-}
-
-.Green {
-    width: 104px;
-    height: 104px;
-    position: absolute;
-    /* Lægges i bunden */
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
-.bookmark {
-    width: 15px !important;
-    height: 15px !important;
-    position: absolute;
-    left: 30px;
-    top: 30px;
-    /* Lægges ovenpå */
-    z-index: 2;
-
+.icon-wrapper{
+    width: 104px !important;
+    height: 104px !important;
 }
