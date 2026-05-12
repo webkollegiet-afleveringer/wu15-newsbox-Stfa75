@@ -12,7 +12,7 @@ img {
 
 .ArchivePage {
     padding: 20px;
-    
+
     h1 {
         font-size: 2rem;
         margin-bottom: 30px;
@@ -23,7 +23,8 @@ img {
 .ArchiveContainer {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Afstand mellem kasserne */
+    gap: 15px;
+    /* Afstand mellem kasserne */
 }
 
 .ArchiveCategoryGroup {
@@ -38,11 +39,12 @@ img {
         justify-content: space-between;
         align-items: center;
         border: 1px solid black;
-        
-        background-color: #f8f8f8; /* Lys grå som i Home */
+
+        background-color: #f8f8f8;
+        /* Lys grå som i Home */
         border: none;
-       
-        
+
+
         cursor: pointer;
         transition: all 0.2s ease-in-out;
 
@@ -64,7 +66,8 @@ img {
 
         &:active {
             background-color: #efefef;
-            transform: scale(0.98); /* Lille klik-effekt */
+            transform: scale(0.98);
+            /* Lille klik-effekt */
         }
     }
 }
@@ -73,7 +76,7 @@ img {
 .CategoryList {
     display: flex;
     flex-direction: column;
-    gap: 15px;   
+    gap: 15px;
     /* En lille animation så den ikke bare "popper" frem */
     animation: fadeIn 0.3s ease-out;
 }
@@ -83,6 +86,7 @@ img {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -95,4 +99,9 @@ img {
     color: #888;
     margin-top: 50px;
     font-style: italic;
+}
+
+.Overskrift2 {
+    text-align: center;
+    margin-bottom: 20px;
 }

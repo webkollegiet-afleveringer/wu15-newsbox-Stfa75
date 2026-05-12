@@ -9,7 +9,7 @@ export default function Header() {
         <>
             <section className="Header">
                 <img src={Logo} alt="Logo" />
-                <h3>Newsify</h3>
+                <h2>Newsify</h2>
             </section>
         </>
     )

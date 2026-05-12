@@ -9,13 +9,13 @@ const getImg = (article) => {
     if (article.multimedia?.[0]?.url) {
         return article.multimedia[0].url;
     }
-    
+
     // Tjekker for "Most Popular" (Popular-siden)
     // Her ligger billedet typisk inde i media -> media-metadata
     if (article.media?.[0]?.["media-metadata"]?.[2]?.url) {
         return article.media[0]["media-metadata"][2].url;
     }
-    
+
     return Logo; // Fallback hvis intet findes
 };
 
@@ -24,28 +24,28 @@ export default function Popular() {
     const { data, pending, error } = useFetchData(`https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${apiKey}`);
 
     // 1. SE HER: Vi bruger toLowerCase() så "Health" og "health" begge virker
-   // Popular.jsx
-// I Popular.jsx
-const healthData = data?.results?.filter(art => 
-    art.section?.toLowerCase().includes("health") || 
-    art.section?.toLowerCase().includes("well")
-);
+    // Popular.jsx
+    // I Popular.jsx
+    const healthData = data?.results?.filter(art =>
+        art.section?.toLowerCase().includes("health") ||
+        art.section?.toLowerCase().includes("well")
+    );
 
-const businessData = data?.results?.filter(art => 
-    art.section?.toLowerCase().includes("business") || 
-    art.section?.toLowerCase().includes("economy") ||
-    art.section?.toLowerCase().includes("u.s.") // En del populære artikler lander her
-);
+    const businessData = data?.results?.filter(art =>
+        art.section?.toLowerCase().includes("business") ||
+        art.section?.toLowerCase().includes("economy") ||
+        art.section?.toLowerCase().includes("u.s.") // En del populære artikler lander her
+    );
 
-const sportsData = data?.results?.filter(art => 
-    art.section?.toLowerCase().includes("sports")
-);
+    const sportsData = data?.results?.filter(art =>
+        art.section?.toLowerCase().includes("sports")
+    );
 
-const travelData = data?.results?.filter(art => 
-    art.section?.toLowerCase().includes("travel") ||
-    art.section?.toLowerCase().includes("world")
-);
-   
+    const travelData = data?.results?.filter(art =>
+        art.section?.toLowerCase().includes("travel") ||
+        art.section?.toLowerCase().includes("world")
+    );
+
 
     // 2. DEBUGGING: Åbn din konsol (F12) og se hvad der står her:
     console.log("Alle populære artikler fra API:", data?.results);
@@ -53,10 +53,10 @@ const travelData = data?.results?.filter(art =>
 
     return (
         <>
-            <h2>Popular</h2>
+            <h1 className="title">Popular</h1>
             <br />
             <Health popularArticles={healthData} />
-             <Business popularArticles={data?.results} />
+            <Business popularArticles={data?.results} />
             <Sports popularArticles={sportsData} />
             <Travel popularArticles={travelData} />
         </>

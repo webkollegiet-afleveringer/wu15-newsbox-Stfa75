@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import ArkivKort from "../Components/Archivecard"; 
-import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io"; 
+import ArkivKort from "../Components/Archivecard";
+import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import Logo from "../img/logo.png"
 import "./ArchiveView.scss";
 
@@ -33,7 +33,7 @@ export default function ArchiveView() {
             const url = article.multimedia[0].url;
             return url.startsWith("http") ? url : `https://www.nytimes.com/${url}`;
         }
-        
+
         // 2. Tjek for Most Popular format (det vi lige har fixet i de andre filer)
         if (article.media?.[0]?.["media-metadata"]?.[2]?.url) {
             return article.media[0]["media-metadata"][2].url;
@@ -44,16 +44,16 @@ export default function ArchiveView() {
 
     return (
         <main className="ArchivePage">
-            <h1>Arkiverede artikler</h1>
+            <h2 className="Overskrift2">Arkiverede artikler</h2>
 
             <div className="ArchiveContainer">
                 {savedArticles.length > 0 ? (
                     categories.map((category) => (
                         <section key={category} className="ArchiveCategoryGroup">
-                            
+
                             {/* KATEGORI-HEADER (Nu med Logo og Pile-logik) */}
-                            <button 
-                                className="CategoryHeader" 
+                            <button
+                                className="CategoryHeader"
                                 onClick={() => toggleCategory(category)}
                                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}
                             >
@@ -61,10 +61,10 @@ export default function ArchiveView() {
                                     <img src={Logo} alt="logo" style={{ width: '25px', height: '25px' }} />
                                     <span>{category}</span>
                                 </div>
-                                
+
                                 <div className="Pil">
-                                    {activeCategory === category ? 
-                                        <IoIosArrowDown style={{ fontSize: '1.5rem' }} /> : 
+                                    {activeCategory === category ?
+                                        <IoIosArrowDown style={{ fontSize: '1.5rem' }} /> :
                                         <IoIosArrowForward style={{ fontSize: '1.5rem' }} />
                                     }
                                 </div>
@@ -76,11 +76,11 @@ export default function ArchiveView() {
                                     {savedArticles
                                         .filter(article => (article.section || "Diverse") === category)
                                         .map((article, index) => (
-                                            <ArkivKort 
-                                                key={article.url || index} 
-                                                article={article} 
+                                            <ArkivKort
+                                                key={article.url || index}
+                                                article={article}
                                                 getImg={getImg}
-                                                onDelete={handleDelete} 
+                                                onDelete={handleDelete}
                                             />
                                         ))
                                     }

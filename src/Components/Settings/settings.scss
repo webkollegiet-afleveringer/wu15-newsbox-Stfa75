@@ -74,10 +74,45 @@ input:checked+.slider:before {
     display: flex;
     justify-content: space-between;
     padding: 0.8rem;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
 
 }
 
-.options h2 {
-    text-align: start;
-    font-size: 1rem;
+.Name {
+    display: flex;
+    gap: 20px;
+}
+
+.Logo {
+    width: 20px;
+    height: 30px;
+}
+
+.Swich {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.Light {
+    width: 350px;
+    height: 60px;
+    border-radius: 25px;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.Light h3 {
+    text-align: center;
+    color: green;
+}
+
+.Subheading {
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 10px;
+    font-weight: 600;
 }

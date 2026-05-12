@@ -1,5 +1,6 @@
 
 import Settings from "../Components/Settings"
+import "./settings.scss"
 
 
 
@@ -9,11 +10,11 @@ export default function Popular() {
     return (
         <>
 
-            
-            <h3>Settings</h3>
+
+            <h2 className="Overskrift1">Settings</h2>
             <br />
             <Settings />
-            
+
 
 
 
