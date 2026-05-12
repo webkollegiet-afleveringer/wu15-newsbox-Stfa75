@@ -28,7 +28,7 @@ img {
     display: flex;
     justify-content: space-around;
     padding-top: 20px;
-   
+
 
 }
 
@@ -37,13 +37,13 @@ img {
     height: 25px;
     margin-left: 15px;
 }
-a{
+
+a {
     text-decoration: none;
     color: gray; // Standard farve
 
     &.active {
-      color: blue; // Skifter farve, når man er på siden
-      font-weight: bold;
+        color: rgb(21, 209, 62); // Skifter farve, når man er på siden
+        font-weight: bold;
     }
-  }
-
+}

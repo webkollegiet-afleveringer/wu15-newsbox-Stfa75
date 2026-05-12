@@ -57,8 +57,8 @@ export default function ArchiveView() {
                                 onClick={() => toggleCategory(category)}
                                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}
                             >
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                    <img src={Logo} alt="logo" style={{ width: '25px', height: '25px' }} />
+                                <div className="Logo1" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                    <img src={Logo} alt="logo" style={{ width: '20px', height: '30px', paddingleft: "10px" }} />
                                     <span>{category}</span>
                                 </div>
 

@@ -12,7 +12,7 @@ export default function Navbar() {
         <>
             <article className="All">
                 <article className="Footer">
-                    <NavLink title="Home" to="/">
+                    <NavLink title="Home" to="/" className="Link_active">
                         <div className="Icon">
                             <img src={Home} alt="homebutton" className="image" />
                             <p>Home</p>
