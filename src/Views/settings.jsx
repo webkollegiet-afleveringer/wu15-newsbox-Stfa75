@@ -7,6 +7,7 @@ import "./settings.scss"
 
 export default function Popular() {
 
+
     return (
         <>
 
