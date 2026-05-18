@@ -9,7 +9,7 @@ img {
     height: auto;
 }
 
-.find {
+#find {
     width: 345px;
     height: 46px;
     background-color: rgba(217, 217, 217, 0.3);
@@ -17,9 +17,11 @@ img {
     margin: 0 auto;
 
 }
-.Sbar{
+
+.Sbar {
     width: 100%;
     display: flex;
     justify-content: center;
     margin: 0 auto;
+    margin-bottom: 40px;
 }
