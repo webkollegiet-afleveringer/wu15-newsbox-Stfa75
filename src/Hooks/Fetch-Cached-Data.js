@@ -1,46 +1,63 @@
 import { useEffect, useState } from "react";
-import { TRUE } from "sass";
 
-export default function useFetchCachedData(key, url) {
+export default function useFetchCachedData(key, url, options = {}) {
 
-    const [data, setData] = useState(null)
-    const [pending, setPending] = useState(true)
-    const [error, setError] = useState(null)
+    const [data, setData] = useState(null);
+    const [pending, setPending] = useState(true);
+    const [error, setError] = useState(null);
 
+    async function fetchData() {
+        setPending(true);
+        setError(null); // Nulstil fejl ved nyt fetch
+        try {
+            const respons = await fetch(url, options);
 
-    useEffect(() => {
-        async function fetchData() {
-            setPending(true)
-            try {
-
-                const respons = await fetch(url)
-
-                if (!respons.ok) {
-                    setData(null)
-                    throw new Error(`Error ${respons.status}`)
-                }
-                let result = null;
-
-                result = await respons.json()
-                setData(result)
-                if (key) {
-                    sessionStorage.setItem(key, JSON.stringify(result))
-                    sessionStorage.setItem(key + "_expires", Date.now() + 1000 * 60 * 10)
-                }
-
+            if (!respons.ok) {
+                setData(null);
+                throw new Error(`Error ${respons.status}`);
             }
 
+            let result = null;
+            // RETTET: "Response" ændret til "respons" med lille r
+            if (respons.headers.get("content-type") && respons.headers.get("content-type").includes("application/json")) {
+                result = await respons.json();
+            } else if (respons.headers.get("content-type") && respons.headers.get("content-type").includes("text/plain")) {
+                result = await respons.text(); // RETTET: tekst.plain ændret til text/plain
+            }
 
-            catch (error) {
-                setPending(false)
-                setError(error.message)
+            setData(result);
+
+            if (key) {
+                sessionStorage.setItem(key, JSON.stringify(result));
+                sessionStorage.setItem(key + "_expires", (Date.now() + 1000 * 60 * 2).toString());
             }
 
         }
+        catch (error) {
+            setError(error.message);
+        } finally {
+            // RETTET: setLoading ændret til setPending
+            setPending(false);
+        }
+    }
 
-        fetchData()
+    useEffect(function () {
+        let cachedData = null;
+        let cacheExpires = null;
+        if (key) {
+            cachedData = sessionStorage.getItem(key);
+            cacheExpires = sessionStorage.getItem(key + "_expires");
+        }
 
-    }, [url])
+        // RETTET: "cashedData" ændret til "cachedData", og parseInt rettet til parseInt(cacheExpires)
+        if (cachedData && cacheExpires && Date.now() < parseInt(cacheExpires)) {
+            setData(JSON.parse(cachedData));
+            setPending(false); // RETTET: setLoading ændret til setPending
+            return; // Vi stopper funktionen fra at køre mere
+        }
 
-    return { data, pending, error }
+        fetchData(); // Kør fetch, hvis der ikke var noget i cachen
+    }, [url, key]);
+
+    return { data, pending, error };
 }
