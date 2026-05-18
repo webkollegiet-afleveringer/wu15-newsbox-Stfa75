@@ -1,4 +1,4 @@
-import useFetchData from "../../Hooks/useFetchData"
+import useFetchCachedData from "../../Hooks/Fetch-Cached-Data";
 import fetchCachedData from "../../Hooks/Fetch-Cached-Data"
 import { useState } from "react";
 import Down from "../../img/featherdown.png"
@@ -22,11 +22,13 @@ const getImg = (article) => {
     return Logo;
 };
 
-export default function Business({popularArticles}) {
+export default function Business({ popularArticles }) {
     const apiKey = "wtLUgKBONr2XcZEobnbpK5fhDFcH5GshjykRqAsuOtFW9rSq";
-    const { data, pending, error } = useFetchData(`https://api.nytimes.com/svc/news/v3/content/all/business.json?api-key=${apiKey}`);
+    const { data, pending, error } = fetchCachedData(
+        "Business_news",
+        `https://api.nytimes.com/svc/news/v3/content/all/business.json?api-key=${apiKey}`);
     const articlesToRender = popularArticles || data?.results;
-    
+
 
     const [openList, setOpenList] = useState(false);
 
@@ -36,7 +38,7 @@ export default function Business({popularArticles}) {
 
     const handleSaveToArchive = (article) => {
         console.log("Gemmer artikel:", article.title);
-        
+
         const currentArchive = JSON.parse(localStorage.getItem("myArchive")) || [];
         const alreadyExists = currentArchive.some(item => item.url === article.url);
 
@@ -51,7 +53,7 @@ export default function Business({popularArticles}) {
     console.log("Business modtager disse artikler:", popularArticles);
 
     return (
-        <>  
+        <>
             <article className="BusinessSection">
                 <section className="Overskrift">
                     <img src={Logo} alt="a logo" />
@@ -65,12 +67,12 @@ export default function Business({popularArticles}) {
             {openList && articlesToRender?.length > 0 && (
                 <section className="ArticleList">
                     {articlesToRender.slice(0, 20).map((article, index) => (
-                         <ArticleCard 
-                            key={article.url} 
-                            article={article} 
-                            getImg={getImg} 
-                            onSave={() => handleSaveToArchive(article)} 
-                         />
+                        <ArticleCard
+                            key={article.url}
+                            article={article}
+                            getImg={getImg}
+                            onSave={() => handleSaveToArchive(article)}
+                        />
                     ))}
                 </section>
             )}

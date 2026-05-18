@@ -1,4 +1,4 @@
-import useFetchData from "../../Hooks/useFetchData"
+import useFetchCachedData from "../../Hooks/Fetch-Cached-Data";
 import { useState } from "react";
 import Down from "../../img/featherdown.png"
 import Bookmark from "../../img/bookmark.png"
@@ -30,24 +30,24 @@ export default function Health() {
 
 
     return (
-    <section className="ArticleList">
-        {data?.results?.slice(0, 20).map((article, index) => (
-            <a href={article.url} target="_blank" rel="noopener noreferrer" key={index} className="ArticleLink">
-                <div className="ArticleItem">
-                    
-                    <div className="Text">
-                        <h5>{article.title}</h5>
-                        <p>{limitWords(article.abstract)}</p>
-                    </div>
+        <section className="ArticleList">
+            {data?.results?.slice(0, 20).map((article, index) => (
+                <a href={article.url} target="_blank" rel="noopener noreferrer" key={index} className="ArticleLink">
+                    <div className="ArticleItem">
 
-                    <div className="Icon-container">
-                        <img src={Green} alt="background" className="Green" />
-                        <img src={Bookmark} alt="bookmark" className="Bookmark" /> 
-                    </div>
+                        <div className="Text">
+                            <h5>{article.title}</h5>
+                            <p>{limitWords(article.abstract)}</p>
+                        </div>
 
-                </div>
-            </a>
-        ))}
-    </section>
-);
+                        <div className="Icon-container">
+                            <img src={Green} alt="background" className="Green" />
+                            <img src={Bookmark} alt="bookmark" className="Bookmark" />
+                        </div>
+
+                    </div>
+                </a>
+            ))}
+        </section>
+    );
 }

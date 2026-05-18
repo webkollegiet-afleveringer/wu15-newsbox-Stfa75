@@ -1,4 +1,4 @@
-import useFetchData from "../../Hooks/useFetchData"
+
 import fetchCachedData from "../../Hooks/Fetch-Cached-Data"
 import { useState } from "react";
 import Down from "../../img/featherdown.png"
@@ -29,9 +29,11 @@ const getImg = (article) => {
     return Logo;
 };
 
-export default function Health({popularArticles}) {
+export default function Health({ popularArticles }) {
     const apiKey = "wtLUgKBONr2XcZEobnbpK5fhDFcH5GshjykRqAsuOtFW9rSq"
-    const { data, pending, error } = useFetchData(`https://api.nytimes.com/svc/news/v3/content/all/health.json?api-key=${apiKey}`)
+    const { data, pending, error } = fetchCachedData(
+        "health_News",
+        `https://api.nytimes.com/svc/news/v3/content/all/health.json?api-key=${apiKey}`)
     const articlesToRender = popularArticles || data?.results;
     console.log(data);
 
@@ -43,9 +45,9 @@ export default function Health({popularArticles}) {
     const toggleDropDown = () => {
         setOpenList(!openList); //husk pilen skal også skifte
     }
-   const handleSaveToArchive = (article) => {
+    const handleSaveToArchive = (article) => {
         console.log("Gemmer artikel:", article.title);
-        
+
         const currentArchive = JSON.parse(localStorage.getItem("myArchive")) || [];
         const alreadyExists = currentArchive.some(item => item.url === article.url);
 
@@ -59,32 +61,32 @@ export default function Health({popularArticles}) {
     };
 
 
-   return (
-    <>  
-        <article className="HealthSection">
-            <section className="Overskrift">
-                <img src={Logo} alt="a logo" />
-                <h3>Health</h3>
-            </section>
-            {/* Pil-sektionen der styrer din dropdown */}
-            <section className="Pil" onClick={toggleDropDown} style={{ cursor: "pointer" }}>
-                <img src={Down} alt="arrow down" />
-            </section>
-        </article>
+    return (
+        <>
+            <article className="HealthSection">
+                <section className="Overskrift">
+                    <img src={Logo} alt="a logo" />
+                    <h3>Health</h3>
+                </section>
+                {/* Pil-sektionen der styrer din dropdown */}
+                <section className="Pil" onClick={toggleDropDown} style={{ cursor: "pointer" }}>
+                    <img src={Down} alt="arrow down" />
+                </section>
+            </article>
 
-        {/* Her indlæses listen, når openList er true */}
-        {openList && articlesToRender?.length > 0 && (
-            <section className="ArticleList">
-                {articlesToRender.slice(0, 20).map((article, index) => (
-                    <ArticleCard 
-                        key={article.url} 
-                        article={article} 
-                        getImg={getImg}
-                        onSave={() => handleSaveToArchive(article)} 
-                    />
-                ))}
-            </section>
-        )}
-    </>
-)
+            {/* Her indlæses listen, når openList er true */}
+            {openList && articlesToRender?.length > 0 && (
+                <section className="ArticleList">
+                    {articlesToRender.slice(0, 20).map((article, index) => (
+                        <ArticleCard
+                            key={article.url}
+                            article={article}
+                            getImg={getImg}
+                            onSave={() => handleSaveToArchive(article)}
+                        />
+                    ))}
+                </section>
+            )}
+        </>
+    )
 }

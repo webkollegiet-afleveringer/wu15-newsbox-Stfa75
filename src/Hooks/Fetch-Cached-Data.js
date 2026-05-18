@@ -44,16 +44,17 @@ export default function useFetchCachedData(key, url, options = {}) {
     useEffect(function () {
         let cachedData = null;
         let cacheExpires = null;
+
         if (key) {
             cachedData = sessionStorage.getItem(key);
             cacheExpires = sessionStorage.getItem(key + "_expires");
         }
 
-        // RETTET: "cashedData" ændret til "cachedData", og parseInt rettet til parseInt(cacheExpires)
+        // Hvis der er cache, OG det ikke er udløbet, så brug det
         if (cachedData && cacheExpires && Date.now() < parseInt(cacheExpires)) {
             setData(JSON.parse(cachedData));
-            setPending(false); // RETTET: setLoading ændret til setPending
-            return; // Vi stopper funktionen fra at køre mere
+            setPending(false);
+            return;
         }
 
         fetchData(); // Kør fetch, hvis der ikke var noget i cachen

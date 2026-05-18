@@ -23,7 +23,7 @@ export default function Settings({ isDark, onToggle }) {
                 </div>
                 <div>
                     <label className="switch">
-                        <input type="checkbox" data-category="Europe" onInput={inputHandler} defaultChecked={localStorage.getItem("health") === "true"} />
+                        <input type="checkbox" data-category="europe" onInput={inputHandler} defaultChecked={localStorage.getItem("europe") === "true"} />
                         <span className="slider round"></span>
                     </label>
                 </div>
