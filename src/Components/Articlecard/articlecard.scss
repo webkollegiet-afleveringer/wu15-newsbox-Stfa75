@@ -1,71 +1,96 @@
-// 1. Den nye wrapper der holder styr på isolationen
 .ArticleWrapper {
     position: relative;
-    overflow: hidden;    // Dette sikrer, at du kun ser ét ikon ad gangen
-    background-color: #4caf50; // Den grønne farve der afsløres bagved
+    overflow: hidden; 
+    background-color: transparent; 
     width: 100%;
+    margin: 0; // SIKRER: At selve wrapperen ikke skubber til det næste kort
+    padding: 0;
 }
 
 .ArticleItem {
-    display: flex;
-    gap: 15px;
-    padding: 1em;
-    align-items: center;
+    display: flex; 
+    background-color: white;
+    // RETTET: Vi sikrer, at der KUN er en tynd streg i bunden, og ingen marginer imellem kortene
     border-bottom: 1px solid #eee;
-    background-color: white; // Skal være hvid for at dække ikonet
-    position: relative; 
-    z-index: 2;          // Ligger øverst (over ikonet)
-    width: 100%;         // Sikrer at den fylder hele bredden
-    
-    // Fjernet overflow: hidden herfra, da den nu sidder på Wrapperen
+    margin: 0 !important; 
+    padding: 0; // Fjern padding herfra, da .ArchiveLink styrer luftindpakningen nu
+    position: relative;
+    z-index: 2; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.ArchiveLink {
+    display: flex !important;
+    flex-direction: row !important; 
+    gap: 15px;
+    padding: 10px; // Juster denne padding op/ned for at styre højden på kortene
+    width: 100%;
+    text-decoration: none; 
+    color: inherit; 
+    align-items: flex-start; 
+    box-sizing: border-box;
+    margin: 0; // Sikrer intet eksternt mellemrum
+}
+
+.ArticleImage {
+    width: 75px !important;   
+    height: 75px !important;  
+    border-radius: 8px;   
+    object-fit: cover;    
+    flex-shrink: 0; 
 }
 
 .text {
-    flex: 1; 
-    min-width: 0; 
-    flex-shrink: 0;
+    flex: 1;              
+    min-width: 0;         
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
 }
 
 .Article_heading {
-    margin: 0 0 5px 0;
-    font-size: 1.1em;
+    margin: 0 0 4px 0 !important; // Nulstiller browserens standard-margin i bunden
+    padding: 0;
+    font-size: 1em;
     font-weight: bold;
+    color: #333;
+    line-height: 1.3;
     display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;  
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
 .Article_abstract {
-    margin: 0;
-    font-size: 0.9em;
+    margin: 0 !important; // Nulstiller browserens standard-margin i top/bund
+    padding: 0;
+    font-size: 0.85em;
     color: #666;
+    line-height: 1.4;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 2; 
     -webkit-box-orient: vertical;
     overflow: hidden;
-    line-height: 1.4; 
-    max-height: 2.8em; 
 }
 
-// 2. Rettet container til ikonet
+// Det grønne lag bagved
 .green-action-layer {
     position: absolute;
     top: 0;
-    right: 0;      // Placeres i højre side af Wrapperen
-    bottom: 0;
-    width: 80px;   // Bredden på det synlige område når der swipes
+    right: -80px; // Placerer knappen lige præcis "uden for" skærmen til højre
+    width: 80px;
+    height: 100%;
+    background-color: green; // Eller din egen grønne farve
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1;    // Ligger bagved ArticleItem
+    cursor: pointer;
 }
 
-// 3. Rettet selve billedet (Ikonet)
 .green-action-layer img {
-    /* Fjernet dine gamle absolute værdier og left: 400px */
-    width: 30px !important; 
+    width: 30px !important;
     height: 30px !important;
     object-fit: contain;
-    
 }

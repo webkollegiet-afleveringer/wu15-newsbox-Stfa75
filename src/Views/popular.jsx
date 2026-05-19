@@ -2,7 +2,7 @@ import Sports from "../Components/Sports"
 import Business from "../Components/Business"
 import Travel from "../Components/Travel"
 import Health from "../Components/Health"
-import useFetchData from "../Hooks/useFetchData" // 1. Tilføjet denne import
+import useFetchCachedData from "../Hooks/Fetch-Cached-Data"
 
 const getImg = (article) => {
     // Tjekker for "Top Stories" (Home-siden)
@@ -21,7 +21,7 @@ const getImg = (article) => {
 
 export default function Popular() {
     const apiKey = "wtLUgKBONr2XcZEobnbpK5fhDFcH5GshjykRqAsuOtFW9rSq";
-    const { data, pending, error } = useFetchData(`https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${apiKey}`);
+    const { data, pending, error } = useFetchCachedData(`https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${apiKey}`);
 
     // 1. SE HER: Vi bruger toLowerCase() så "Health" og "health" begge virker
     // Popular.jsx

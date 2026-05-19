@@ -1,0 +1,66 @@
+import { useEffect, useState } from "react";
+
+export default function useFetchCachedData(key, url, options = {}) {
+    // 1. Hent cachen med det samme for at bestemme start-state
+    const [data, setData] = useState(() => {
+        if (!key) return null;
+        const cached = sessionStorage.getItem(key);
+        const expires = sessionStorage.getItem(key + "_expires");
+        if (cached && expires && Date.now() < parseInt(expires)) {
+            return JSON.parse(cached);
+        }
+        return null;
+    });
+
+    // Hvis der var brugbar cache fra start, skal pending være false med det samme!
+    const [pending, setPending] = useState(!data);
+    const [error, setError] = useState(null);
+
+    // Vi gemmer options i en string, så React ikke tror, det ændrer sig hele tiden
+    const stringifiedOptions = JSON.stringify(options);
+
+    useEffect(function () {
+        // Hvis vi allerede har sat dataen via vores start-state, behøver vi ikke fethce!
+        if (data) {
+            setPending(false);
+            return;
+        }
+
+        async function fetchData() {
+            setPending(true);
+            setError(null);
+            try {
+                const respons = await fetch(url, options);
+
+                if (!respons.ok) {
+                    setData(null);
+                    throw new Error(`Error ${respons.status}`);
+                }
+
+                let result = null;
+                if (respons.headers.get("content-type") && respons.headers.get("content-type").includes("application/json")) {
+                    result = await respons.json();
+                } else if (respons.headers.get("content-type") && respons.headers.get("content-type").includes("text/plain")) {
+                    result = await respons.text();
+                }
+
+                setData(result);
+
+                if (key) {
+                    sessionStorage.setItem(key, JSON.stringify(result));
+                    // Sæt cachen til at gælde i f.eks. 5 minutter (så du sparer på dine kald!)
+                    sessionStorage.setItem(key + "_expires", (Date.now() + 1000 * 60 * 5).toString());
+                }
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setPending(false);
+            }
+        }
+
+        fetchData();
+        // Vi lytter nu kun til url, key og de rå options.
+    }, [url, key, stringifiedOptions]);
+
+    return { data, pending, error };
+}

@@ -1,14 +1,13 @@
-import { useEffect, useRef } from "react"
-import "./settings.scss"
-import Logo from "../../img/logo.png"
+import { useEffect, useRef } from "react";
+import "./settings.scss";
+import Logo from "../../img/logo.png";
 
 export default function Settings({ isDark, onToggle }) {
     console.log(onToggle);
 
     function inputHandler(event) {
-        localStorage.setItem(event.target.dataset.category, event.target.checked)
-
-
+        // Gemmer sandt/falsk som en streng i localStorage
+        localStorage.setItem(event.target.dataset.category, event.target.checked);
     }
 
     return (
@@ -19,11 +18,17 @@ export default function Settings({ isDark, onToggle }) {
             <article className="Options">
                 <div className="Name">
                     <img src={Logo} alt="Logo" className="Logo" />
-                    <h3 className="Word">EUROPE</h3>
+                    <h3 className="Word">WORLD</h3>
                 </div>
                 <div>
                     <label className="switch">
-                        <input type="checkbox" data-category="europe" onInput={inputHandler} defaultChecked={localStorage.getItem("europe") === "true"} />
+                        {/* RETTET: defaultChecked er nu true, medmindre der specifikt står "false" i localStorage */}
+                        <input 
+                            type="checkbox" 
+                            data-category="europe" 
+                            onInput={inputHandler} 
+                            defaultChecked={localStorage.getItem("world") !== "false"} 
+                        />
                         <span className="slider round"></span>
                     </label>
                 </div>
@@ -37,7 +42,12 @@ export default function Settings({ isDark, onToggle }) {
                 </div>
                 <div>
                     <label className="switch">
-                        <input type="checkbox" data-category="health" onInput={inputHandler} defaultChecked={localStorage.getItem("health") === "true"} />
+                        <input 
+                            type="checkbox" 
+                            data-category="health" 
+                            onInput={inputHandler} 
+                            defaultChecked={localStorage.getItem("health") !== "false"} 
+                        />
                         <span className="slider round"></span>
                     </label>
                 </div>
@@ -51,7 +61,12 @@ export default function Settings({ isDark, onToggle }) {
                 </div>
                 <div>
                     <label className="switch">
-                        <input type="checkbox" data-category="sports" onInput={inputHandler} defaultChecked={localStorage.getItem("sports") === "true"} />
+                        <input 
+                            type="checkbox" 
+                            data-category="sports" 
+                            onInput={inputHandler} 
+                            defaultChecked={localStorage.getItem("sports") !== "false"} 
+                        />
                         <span className="slider round"></span>
                     </label>
                 </div>
@@ -65,7 +80,12 @@ export default function Settings({ isDark, onToggle }) {
                 </div>
                 <div>
                     <label className="switch">
-                        <input type="checkbox" data-category="business" onInput={inputHandler} defaultChecked={localStorage.getItem("business") === "true"} />
+                        <input 
+                            type="checkbox" 
+                            data-category="business" 
+                            onInput={inputHandler} 
+                            defaultChecked={localStorage.getItem("business") !== "false"} 
+                        />
                         <span className="slider round"></span>
                     </label>
                 </div>
@@ -78,21 +98,24 @@ export default function Settings({ isDark, onToggle }) {
                     <h3 className="Word">TRAVEL</h3>
                 </div>
                 <div>
-                    {/* HER VAR FEJLEN: className s="switch" er rettet til className="switch" */}
                     <label className="switch">
-                        <input type="checkbox" data-category="travel" onInput={inputHandler} defaultChecked={localStorage.getItem("travel") === "true"} />
+                        <input 
+                            type="checkbox" 
+                            data-category="travel" 
+                            onInput={inputHandler} 
+                            defaultChecked={localStorage.getItem("travel") !== "false"} 
+                        />
                         <span className="slider round"></span>
                     </label>
                 </div>
             </article>
 
-            {/* DARK MODE KNAP - Nu med onClick! */}
+            {/* DARK MODE KNAP */}
             <div className="Swich">
                 <button className="Light" onClick={onToggle}>
                     <h3>{isDark ? "SWITCH TO LIGHT" : "SWITCH TO DARK"}</h3>
                 </button>
-
             </div>
         </>
-    )
+    );
 }
