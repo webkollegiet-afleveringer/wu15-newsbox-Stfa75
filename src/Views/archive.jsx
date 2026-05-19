@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import ArchiveCard from "../Components/ArchiveCard"; 
+import ArchiveCard from "../Components/ArchiveCard";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import Logo from "../img/logo.png";
 import "./ArchiveView.scss";
@@ -10,7 +10,7 @@ export default function ArchiveView() {
 
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem("myArchive")) || [];
-        console.log("Artikler hentet fra localStorage:", data); 
+        console.log("Artikler hentet fra localStorage:", data);
         setSavedArticles(data);
     }, []);
 
@@ -29,7 +29,7 @@ export default function ArchiveView() {
 
     // Find unikke kategorier og filtrér ud fra Settings
     const categories = [...new Set(savedArticles.map(article => getCategoryName(article)))];
-        
+
 
     const toggleCategory = (category) => {
         setActiveCategory(activeCategory === category ? null : category);
@@ -52,32 +52,28 @@ export default function ArchiveView() {
         return Logo;
     };
 
-   return (
-        <main className="ArchivePage" style={{ padding: "20px" }}>
-            <h2 className="Overskrift2">Arkiverede artikler (RÅ TEST-VISNING)</h2>
-            
-            <div style={{ background: "#f0f0f0", padding: "10px", marginBottom: "20px", color: "black" }}>
-                <p>Antal artikler i state: <strong>{savedArticles.length}</strong></p>
-                <p>Fundne kategorier: <strong>{JSON.stringify(categories)}</strong></p>
-            </div>
+    return (
+        <main className="ArchivePage">
+            <h2 className="Overskrift2">Arkiverede artikler</h2>
 
-            <div className="CategoryList" style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            {/* Vi genbruger din eksisterende ArchiveContainer-klasse fra din SCSS */}
+            <div className="ArchiveContainer">
                 {savedArticles.length > 0 ? (
-                    savedArticles.map((article, index) => (
-                        <div key={article.url || index} style={{ border: "2px solid red", padding: "15px", background: "#fff", color: "black" }}>
-                            <h3>{article.title || "INGEN TITEL"}</h3>
-                            <p>Section i data: <strong style={{ color: "blue" }}>{article.section || "Ikke defineret"}</strong></p>
-                            <p>Section_name i data: <strong style={{ color: "green" }}>{article.section_name || "Ikke defineret"}</strong></p>
-                            <button onClick={() => handleDelete(article.url)} style={{ background: "red", color: "white", padding: "5px 10px", border: "none", cursor: "pointer" }}>
-                                Slet denne
-                            </button>
-                        </div>
-                    ))
+                    /* Vi laver en stor liste med alle de rigtige komponenter */
+                    <div className="ArticleList">
+                        {savedArticles.map((article, index) => (
+                            <ArchiveCard
+                                key={article.url || index}
+                                article={article}
+                                getImg={getImg}
+                                onDelete={handleDelete}
+                            />
+                        ))}
+                    </div>
                 ) : (
-                    <p style={{ color: "red", fontSize: "20px" }}>Der er fuldstændig tomt i savedArticles state!</p>
+                    <p className="empty-msg">Du har ikke gemt nogen artikler endnu.</p>
                 )}
             </div>
         </main>
     );
-
 }
